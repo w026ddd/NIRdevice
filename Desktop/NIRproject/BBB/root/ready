@@ -1,0 +1,14 @@
+#!/bin/bash
+
+while true;
+do
+name=$(timeout 1s cat /dev/rfcomm0)
+if [ "$name" = "x" ]
+then
+python /root/blinkon.py &
+	break
+else
+echo lolo
+fi
+done
+

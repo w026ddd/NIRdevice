@@ -1,0 +1,50 @@
+#! /bin/sh
+
+### BEGIN INIT INFO
+# Provides:          blink
+# Required-Start:    $local_fs $network
+# Required-Stop:     $local_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: blink
+# Description:       blink
+### END INIT INFO
+
+# Carry out specific functions when asked to by the system
+case "$1" in
+  start)
+
+     echo "Starting blink "
+     echo none > /sys/class/leds/beaglebone:green:usr0/trigger
+     echo none > /sys/class/leds/beaglebone:green:usr2/trigger
+     echo none > /sys/class/leds/beaglebone:green:usr3/trigger
+    sleep 2
+     sdptool browse 18:83:31:c1:08:82
+     if [ "$?" = "0" ]
+     then
+     echo "online mode" >> /root/logerr
+     /root/./bluestart
+     /root/./ready
+     # python /root/blinkon.py & 
+     else
+     echo "offline mode" >> /root/logerr
+     python /root/blink.py &
+     fi
+    
+    ;;
+  stop)
+    echo "Stopping blink" 
+    
+    killall python
+    # example 1
+    # /usr/bin/foobar --config /etc/foo.conf stop
+    ;;
+  *)
+    echo "Usage: /etc/init.d/foobar {start|stop}"
+    exit 1
+    ;;
+esac
+
+
+exit 0
+

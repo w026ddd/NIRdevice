@@ -1,0 +1,7 @@
+#!/bin/bash
+hciconfig hci0 piscan
+sdptool add --channel=22 sp
+rfcomm listen /dev/rfcomm0 22 &
+sleep 2
+#python /root/blinkon.py &
+
