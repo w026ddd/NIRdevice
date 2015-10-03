@@ -5,10 +5,10 @@ do
 name=$(timeout 1s cat /dev/rfcomm0)
 if [ "$name" = "x" ]
 then
-python /root/blinkon.py &
+python /root/IOcontrolon.py &
 	break
 else
-echo lolo
+echo waiting...
 fi
 done
 
