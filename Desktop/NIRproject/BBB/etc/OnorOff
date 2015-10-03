@@ -28,7 +28,7 @@ case "$1" in
      # python /root/blinkon.py & 
      else
      echo "offline mode" >> /root/logerr
-     python /root/blink.py &
+     python /root/IOControloff.py &
      fi
     
     ;;
