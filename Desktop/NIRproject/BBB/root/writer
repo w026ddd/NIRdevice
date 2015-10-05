@@ -1,0 +1,22 @@
+#!/bin/bash
+
+while getopts ":a:" opt; do
+  case $opt in
+    a)
+array=(${OPTARG//,/ })
+t=${array[0]}
+v=${array[1]}
+a=${array[2]}
+      echo "$t+$v+$a+~" > /dev/rfcomm0
+    # echo $t+$v+$a+~" 
+     ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
+    :)
+      echo "Option -$OPTARG requires an argument." >&2
+      exit 1
+      ;;
+  esac
+done
