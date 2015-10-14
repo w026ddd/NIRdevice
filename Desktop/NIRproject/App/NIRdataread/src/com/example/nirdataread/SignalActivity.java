@@ -59,7 +59,7 @@ public class SignalActivity extends Activity {
 		            if (msg.what == handlerState) {                                     //if message is what we want
 		                String readMessage = (String) msg.obj;                                                                // msg.arg1 = bytes from connect thread
 		                recDataString.append(readMessage);                                      //keep appending to string until ~
-		                int endOfLineIndex = recDataString.indexOf("~");                    // determine the end-of-line
+		                int endOfLineIndex = recDataString.indexOf("*");                    // determine the end-of-line
 		                if (endOfLineIndex > 0) {                                           // make sure there data before ~
 		                    String dataInPrint = recDataString.substring(0, endOfLineIndex);    // extract string
 		                    txtString.setText("Data Received = " + dataInPrint);
