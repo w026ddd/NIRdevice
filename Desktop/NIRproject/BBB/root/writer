@@ -7,7 +7,7 @@ array=(${OPTARG//,/ })
 t=${array[0]}
 v=${array[1]}
 a=${array[2]}
-      echo "$t+$v+$a+~" > /dev/rfcomm0
+      echo "$t+$v+$a+*" > /dev/rfcomm0
     # echo $t+$v+$a+~" 
      ;;
     \?)
