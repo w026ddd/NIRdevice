@@ -13,6 +13,7 @@ a=${array[2]}
     # echo $t+$v+$a+~" 
      ;;
     \?)
+    # If the writer input is wrong the system does not crash, it just shows an error
       echo "Invalid option: -$OPTARG" >&2
       exit 1
       ;;
