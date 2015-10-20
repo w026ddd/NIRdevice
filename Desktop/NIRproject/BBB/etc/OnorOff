@@ -1,5 +1,6 @@
 #! /bin/sh
 
+#This is the first script to control the path the system takes to decide weather it starts the online or offline mode
 
 ### BEGIN INIT INFO
 # Provides:          blink
@@ -15,19 +16,25 @@
 case "$1" in
   start)
 
+    #It turns off the USer LEDs to reduce noise
      echo "Starting blink "
      echo none > /sys/class/leds/beaglebone:green:usr0/trigger
      echo none > /sys/class/leds/beaglebone:green:usr2/trigger
      echo none > /sys/class/leds/beaglebone:green:usr3/trigger
     sleep 2
+    # It them looks for the system with the bluetooth on
      sdptool browse 18:83:31:c1:08:82
      if [ "$?" = "0" ]
+     # If the bluetooth is on on the smartphone it starts the "online mode" 
      then
      echo "online mode" >> /root/logerr
+     # It waits to the app to be connected
      /root/./bluestart
+     # It tries to reset the system if needed
      /root/./ready
      # python /root/blinkon.py & 
      else
+     # The bluetooth on the cellphone is off or it doesn`t find any cellphone at all
      echo "offline mode" >> /root/logerr
      python /root/IOControloff.py &
      fi
