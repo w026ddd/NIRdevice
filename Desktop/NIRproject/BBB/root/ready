@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# this script runs if a character "x" is sent to it, whenever the app on the smartphone is talked about
+# this script is only called when the bluetooth device is on
 while true;
 do
 name=$(timeout 1s cat /dev/rfcomm0)
