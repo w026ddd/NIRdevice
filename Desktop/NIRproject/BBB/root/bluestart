@@ -1,6 +1,15 @@
+# Diogo Dias 
+# Master Thesis 
+# Wright State University 
+# Oct 2015
+
+# the start of a bash script file
 #!/bin/bash
+# it looks that this command is used to look for a  Bluetooth device
 hciconfig hci0 piscan
+# it looks that this command is used to the short term memory, and more ellaboatate 
 sdptool add --channel=22 sp
+# this command is to get the connection up between the BBB and the smartphone in this country. 
 rfcomm listen /dev/rfcomm0 22 &
 sleep 2
 #python /root/blinkon.py &
