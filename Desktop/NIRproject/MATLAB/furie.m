@@ -1,5 +1,7 @@
+% This function simply build a magnitude spectra of a signal data at a sampling frequency fs
 function furie(data,fs)
 
+% fast fourier transform of data
 X = fft(data);
 N = length(data);
         %building a array of frequencies 
