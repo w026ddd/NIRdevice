@@ -1,3 +1,5 @@
+% This function is used to low-pass butterworth filter x data at a sampling frequency of f, at a frequency f_cutoff
+% and at a order order resulting in a filtered signal y
 function [y] = lpfButterworth(x,f,f_cutoff,order)
 % Implemention of a Low pass Butterworth filter using the filtfilt command
 % User inputs to function
