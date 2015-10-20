@@ -3,56 +3,6 @@
 # Wright State University 
 # Oct 2015
 
-
-# These commands are responsible to create the logfile to write data on it ( file names datalog), the flag "a+" means
-# that every new text is going to be added at the end of the file
-f = open('/root/datalog','a+')
-# t is the time variable indicating how long has it passed since the system starts 
-t = 0
-
-
-f.write('\n timer,pd1  ,pd2  ,NIRLED \n')
-
-f.close()
-
-#infinite loop
-while True:
-    # the identation is essential to python script language
-    f = open('/root/datalog','a+')
-    # This command activate one of the LEDs
-    GPIO.output("P8_12", GPIO.HIGH)
-    # Data is read once
-    ADC.read("P9_35")
-    # Data is read again to clean the buffer and the variable is stored by on variable a
-    a = ADC.read("P9_35")
-    # the same happen to variable b
-    ADC.read("P9_40")
-    b = ADC.read("P9_40")
-    # This both variables are written with the command below
-    f.write('%1.3f,%1.3f,%1.3f,850nm \n' % (t,a,b))
-    # As said before the file must be closed on the loop to make the program not crash
-    f.close()
-    # The LED is deactivated
-    GPIO.output("P8_12", GPIO.LOW)
-    # 0.2s is passed to the next point to be read
-    time.sleep(0.2)
-    # The time variable is updated 
-    t = t + 0.2
-    # The procedure is then repeated with the other LED
-    f = open('/root/datalog','a+')
-    GPIO.output("P8_10",GPIO.HIGH)
-    ADC.read("P9_35")
-    ADC.read("P9_35")
-    c = ADC.read("P9_35")
-    ADC.read("P9_40")
-    d = ADC.read("P9_40")
-    f.write('%1.3f,%1.3f,%1.3f,765nm \n' % (t,c,d))
-    f.close()
-    GPIO.output("P8_10", GPIO.LOW)
-    time.sleep(0.2)
-    t = t + 0.2
-    # Then everything start over
-
 # I needed to import the GPIO and ADC controller packages besides the time package to control
 # the Sources and detectors on this design
 # For the Online mode it also needed the subprocess package to call the packages from an outsource than python
@@ -183,3 +133,4 @@ while True:
 	
     runs = runs + 1
 
+# Then the system Starts all over
