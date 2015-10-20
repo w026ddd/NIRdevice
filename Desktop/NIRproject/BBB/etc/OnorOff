@@ -41,6 +41,7 @@ case "$1" in
     
     ;;
   stop)
+  # If this service is called to stop the service the python scripts are stopped
     echo "Stopping blink" 
     
     killall python
