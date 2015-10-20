@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# This script is used to reset the USB port and try to make it work again
 
 devmem2 0x47401c60 b 0x00
 sleep 1
